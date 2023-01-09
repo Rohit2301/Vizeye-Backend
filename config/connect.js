@@ -1,14 +1,13 @@
 const mongoose = require("mongoose");
-const testmodel = require("../models/test");
-const URI =
-  "mongodb+srv://rohit2301_:Toboduhan@imagescan.hhlzryv.mongodb.net/?retryWrites=true&w=majority";
+const testmodel = require("../models/image");
 
 const connectDatabase = async () => {
-  await mongoose.connect(URI, {
+  mongoose.set("strictQuery", false);
+  await mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  console.log(`connected to ${URI}`);
+  console.log(`connected to database`);
 };
 
 module.exports = connectDatabase;
