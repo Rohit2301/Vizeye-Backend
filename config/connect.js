@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const testmodel = require("../models/image");
 
 const connectDatabase = async () => {
   mongoose.set("strictQuery", false);

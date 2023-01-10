@@ -1,6 +1,8 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config({ path: "config/config.env" });
+}
 const app = require("./app");
 const connectDatabase = require("./config/connect");
-const cloudinary = require("./utils/cloudinary");
 const PORT = process.env.PORT || 4000;
 
 // UncaughtException Error
