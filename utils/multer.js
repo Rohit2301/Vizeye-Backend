@@ -1,15 +1,17 @@
 const multer = require("multer");
 const path = require("path");
 
-const storageMul = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../upload/"));
-  },
-  filename: (req, file, cb) => {
-    const ext = file.mimetype.split("/")[1];
-    cb(null, `${file.originalname}-${Date.now()}.${ext}`);
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, path.join(__dirname, "../upload/"));
+//   },
+//   filename: (req, file, cb) => {
+//     const ext = file.mimetype.split("/")[1];
+//     cb(null, `${file.originalname}-${Date.now()}.${ext}`);
+//   },
+// });
+
+const storage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
   let ext = path.extname(file.originalname);
@@ -22,7 +24,7 @@ const multerFilter = (req, file, cb) => {
 
 // Multer config
 const multerConfig = multer({
-  storage: storageMul,
+  storage: storage,
   fileFilter: multerFilter,
 });
 
