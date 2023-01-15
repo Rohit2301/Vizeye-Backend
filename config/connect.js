@@ -13,12 +13,12 @@ module.exports = connectDatabase;
 
 //
 // -----------------------------mongodb---------------------------------------------------
-// --------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------
 //
 
 // const MongoClient = require("mongodb").MongoClient;
 
-// // Connect URL
+// Connect URL
 // const url =
 //   "mongodb+srv://rohit2301_:Toboduhan@imagescan.hhlzryv.mongodb.net/?retryWrites=true&w=majority";
 // const client = new MongoClient(url);

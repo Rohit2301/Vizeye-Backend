@@ -50,7 +50,7 @@ router.post("/", upload.single("image"), async (req, res) => {
   async function upload(req) {
     let result = await streamUpload(req);
     console.log(result);
-    res.send({ file: result.secure_url, success: true });
+    res.send({ filePath: result.secure_url, success: true });
   }
 
   upload(req);
