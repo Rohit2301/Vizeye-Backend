@@ -1,22 +1,23 @@
 const express = require("express");
 // const fileUpload = require("express-fileupload");
 const cors = require("cors");
-const bodyParser = require("body-parser");
-const userRoutes = require("./routes/userRoute");
+const uploadImageRoute = require("./routes/uploadImage");
+// const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 // config
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 // app.use(fileUpload());
 
 app.get("/", (req, res) => {
-  res.send("hlop");
+  res.send("Welcome to vizeye backend");
 });
 
-app.use("/user", userRoutes);
+app.use("/uploadImage", uploadImageRoute);
+// app.use("/user", userRoutes);
 
 // app.post("/", (req, res) => {
 //   console.log(req.files);

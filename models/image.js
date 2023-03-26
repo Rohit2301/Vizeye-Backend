@@ -5,3 +5,4 @@ const userSchema = new mongoose.Schema({
   cloudinary_id: String,
 });
 module.exports = mongoose.model("User", userSchema);
+  

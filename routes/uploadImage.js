@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const cloudinary = require("../utils/cloudinary");
-const upload = require("../utils/multer");
+const cloudinary = require("../config/cloudinary");
+const multerUploader = require("../utils/multer");
 const User = require("../models/image");
 const streamifier = require("streamifier");
 
 router.get("/", (req, res) => {
-  res.send("user router get console");
+  res.send("Welcome to uploadImage section");
 });
 
 // router.post("/", upload.single("image"), async (req, res) => {
@@ -32,13 +32,14 @@ router.get("/", (req, res) => {
 //     console.log(err);
 //   }
 // });
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", multerUploader.single("image"), async (req, res) => {
   let streamUpload = (req) => {
     return new Promise((resolve, reject) => {
       let stream = cloudinary.uploader.upload_stream((error, result) => {
         if (result) {
           resolve(result);
         } else {
+          console.log("here");
           reject(error);
         }
       });
@@ -48,11 +49,14 @@ router.post("/", upload.single("image"), async (req, res) => {
   };
 
   async function upload(req) {
-    let result = await streamUpload(req);
-    console.log(result);
-    res.send({ filePath: result.secure_url, success: true });
+    try {
+      let result = await streamUpload(req);
+      console.log(result);
+      res.send({ filePath: result.secure_url, success: true });
+    } catch (error) {
+      res.send({ error: error, status: 400 });
+    }
   }
-
   upload(req);
 });
 

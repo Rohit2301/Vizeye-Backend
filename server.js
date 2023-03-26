@@ -1,8 +1,8 @@
 if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config({ path: "config/config.env" });
+  require("dotenv").config({ path: "config/.env.local" });
 }
 const app = require("./app");
-const connectDatabase = require("./config/connect");
+const connectDatabase = require("./config/connectDb");
 const PORT = process.env.PORT || 4000;
 
 // UncaughtException Error
@@ -10,6 +10,7 @@ process.on("uncaughtException", (err) => {
   console.log(`Error: ${err.message}`);
   process.exit(1);
 });
+
 connectDatabase();
 
 const server = app.listen(PORT, () => {
