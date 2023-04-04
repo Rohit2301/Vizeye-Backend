@@ -2,6 +2,7 @@ const express = require("express");
 // const fileUpload = require("express-fileupload");
 const cors = require("cors");
 const uploadImageRoute = require("./routes/uploadImage");
+const apiKeys = require("./routes/apiKeys");
 // const userRoutes = require("./routes/userRoutes");
 
 const app = express();
@@ -15,6 +16,8 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Welcome to vizeye backend");
 });
+
+app.use("/apiKeys", apiKeys);
 
 app.use("/uploadImage", uploadImageRoute);
 // app.use("/user", userRoutes);
