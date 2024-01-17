@@ -25,7 +25,7 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-connectDatabase();
+// connectDatabase();
 
 const server = app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
